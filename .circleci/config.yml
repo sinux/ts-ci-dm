@@ -47,8 +47,7 @@ workflows:
     - build:
         filters:
           branches:
-            only:
-              - develop
+            only: develop
     # - test:
     #     requires:
     #     - build
