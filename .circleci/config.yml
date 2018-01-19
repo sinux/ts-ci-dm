@@ -15,7 +15,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-      working_directory: ~/repo
+      working_directory: /home/circleci/repo
 
     steps:
     - checkout
@@ -38,7 +38,7 @@ jobs:
     - run: npm test
 
     - persist_to_workspace:
-        root: ~/repo
+        root: /home/circleci/repo
 
         paths:
           - build
@@ -47,7 +47,7 @@ jobs:
   push:
     docker:
     - image: docker.io/library/alpine:latest
-    working_directory: ~/repo
+    working_directory: /home/circleci/repo
     steps:
     - run:
         name: Install dependencies
@@ -56,7 +56,7 @@ jobs:
           apk add --no-progress ca-certificates curl
           apk add git
     - attach_workspace:
-        at: ~/repo
+        at: /home/circleci/repo
     - run:
         name: PushEnsure it created an index.html with assets
         command: |
