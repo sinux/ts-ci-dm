@@ -39,8 +39,7 @@ jobs:
 
     - persist_to_workspace:
         root: .
-        paths:
-        - build
+        paths: /home/circleci/repo
 
 
   push:
