@@ -38,7 +38,7 @@ jobs:
     - run: npm test
 
     - persist_to_workspace:
-        root: .
+        root: /home/circleci/repo
         paths: /home/circleci/repo
 
 
