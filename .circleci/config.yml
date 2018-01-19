@@ -58,6 +58,7 @@ jobs:
     - run:
         name: PushEnsure it created an index.html with assets
         command: |
+          ls
           git push origin master build/
 
 workflows:
