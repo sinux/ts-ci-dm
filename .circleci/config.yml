@@ -37,6 +37,31 @@ jobs:
       # run tests!
     - run: npm test
 
+    - persist_to_workspace:
+        root: ~/repo
+
+        paths:
+          - build
+
+
+  push:
+    docker:
+    - image: docker.io/library/alpine:latest
+    working_directory: ~/repo
+    steps:
+    - run:
+        name: Install dependencies
+        command: |
+          apk update
+          apk add --no-progress ca-certificates curl
+          apk add git
+    - attach_workspace:
+        at: ~/repo
+    - run:
+        name: PushEnsure it created an index.html with assets
+        command: |
+          git push origin master build/
+
 workflows:
 
   version: 2
@@ -49,9 +74,9 @@ workflows:
         filters:
           branches:
             only: develop
-    # - test:
-    #     requires:
-    #     - build
+    - push:
+        requires:
+        - build
 ...
 
 
