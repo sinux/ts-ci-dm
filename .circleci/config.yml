@@ -53,6 +53,9 @@ jobs:
           apk update
           apk add --no-progress ca-certificates curl
           apk add git
+          go get github.com/aktau/github-release
+          npm install github-release-notes -g
+    - npm install github-release-notes -g
     - attach_workspace:
         at: /home/circleci/repo
     - run:
