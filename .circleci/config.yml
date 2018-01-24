@@ -55,7 +55,7 @@ jobs:
           apk add git
           go get github.com/aktau/github-release
           apk add --update nodejs nodejs-npm
-    - npm install github-release-notes -g
+          npm install github-release-notes -g
     - attach_workspace:
         at: /home/circleci/repo
     - run:
