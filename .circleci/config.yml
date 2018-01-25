@@ -55,6 +55,7 @@ jobs:
           apk add --no-progress ca-certificates curl
           apk add git make
           apk add openssh
+          apk add zip
           go get github.com/aktau/github-release
           apk add --update nodejs nodejs-npm
           npm install github-release-notes -g
@@ -63,7 +64,7 @@ jobs:
     - run:
         name: push to master
         command: |
-          zip -r $CIRCLE_ARTIFACTS/$PROJECT_NAME-$CIRCLE_TAG.zip dist/*
+          zip -r $CIRCLE_ARTIFACTS/$PROJECT_NAME-$CIRCLE_TAG.zip out/*
           git config user.name $CIRCLE_PROJECT_USERNAME
           gren --override --data-source=commits
           github-release upload --user $CIRCLE_PROJECT_USERNAME --repo $CIRCLE_PROJECT_REPONAME --tag $CIRCLE_TAG --name $CIRCLE_PROJECT_REPONAME"."$CIRCLE_TAG"-build-"$CIRCLE_BUILD_NUM".zip" --file $CIRCLE_ARTIFACTS/$PROJECT_NAME-$CIRCLE_TAG.zip
