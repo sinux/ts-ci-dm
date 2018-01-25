@@ -1,4 +1,8 @@
 {
+  "name": "test-snx-api",
+  "version": "1.0.0",
+  "description": "\" Api Typescript\"",
+  "main": "out/api.js",
   "scripts": {
     "test": "mocha -r ts-node/register src/test/*.ts"
   },
