@@ -28,7 +28,7 @@ jobs:
         - v1-dependencies-
 
     - run: npm install
-    - run: npm install -g typescript
+    - run: sudo npm install -g typescript
 
     - save_cache:
         paths:
