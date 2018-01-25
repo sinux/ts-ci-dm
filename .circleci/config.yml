@@ -46,6 +46,7 @@ jobs:
     docker:
     - image: docker.io/library/golang:alpine
     working_directory: /home/circleci/repo
+    tag: /v[0-9]+(\.[0-9]+)*/
     steps:
     - run:
         name: Install dependencies
@@ -61,8 +62,13 @@ jobs:
         at: /home/circleci/repo
     - run:
         name: push to master
-        command: |
-          git push origin master
+        commands:
+          - zip -r $CIRCLE_ARTIFACTS/$PROJECT_NAME-$CIRCLE_TAG.zip dist/*
+          - git config user.name $CIRCLE_PROJECT_USERNAME
+          - gren --override --data-source=commits
+          - github-release upload --user $CIRCLE_PROJECT_USERNAME --repo $CIRCLE_PROJECT_REPONAME --tag $CIRCLE_TAG --name $CIRCLE_PROJECT_REPONAME"."$CIRCLE_TAG"-build-"$CIRCLE_BUILD_NUM".zip" --file $CIRCLE_ARTIFACTS/$PROJECT_NAME-$CIRCLE_TAG.zip
+
+
 
 workflows:
 
