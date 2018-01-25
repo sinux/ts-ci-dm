@@ -44,7 +44,7 @@ jobs:
 
   push:
     docker:
-    - image: docker.io/library/golang:latest
+    - image: docker.io/library/golang:alpine
     working_directory: /home/circleci/repo
     steps:
     - run:
