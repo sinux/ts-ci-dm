@@ -65,6 +65,8 @@ jobs:
     - run:
         name: push to master
         command: |
+          pwd
+          ls
           zip -r $CIRCLE_ARTIFACTS/$PROJECT_NAME-$CIRCLE_TAG.zip build/*
           git config user.name $CIRCLE_PROJECT_USERNAME
           gren release
